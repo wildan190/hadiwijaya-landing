@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\v2;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
-use App\Models\Visitor;
 use Illuminate\Support\Facades\Cache;
+use App\Jobs\LogVisitorJob;
 
 class BlogPublicController extends Controller
 {
@@ -27,8 +27,8 @@ class BlogPublicController extends Controller
                 ->paginate($perPage);
         });
 
-        // Simpan visitor landing page
-        Visitor::create([
+        // Dispatch job untuk log visitor
+        LogVisitorJob::dispatch([
             'type'       => 'landing_page',
             'ip'         => $request->ip(),
             'user_agent' => $request->userAgent(),
@@ -51,8 +51,8 @@ class BlogPublicController extends Controller
                 ->firstOrFail();
         });
 
-        // Simpan visitor blog
-        Visitor::create([
+        // Dispatch job untuk log visitor
+        LogVisitorJob::dispatch([
             'type'       => 'blog',
             'ip'         => $request->ip(),
             'user_agent' => $request->userAgent(),
