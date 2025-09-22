@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Jobs\ProcessBlogJob;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -75,6 +76,13 @@ class BlogController extends Controller
         $data = $request->except('headline_img');
 
         if ($request->hasFile('headline_img')) {
+            // Hapus file lama kalau ada
+            if ($blog->headline_img) {
+                $oldPath = str_replace('/storage/', '', $blog->headline_img);
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            // Simpan file baru
             $path = $request->file('headline_img')->store('blogs', 'public');
             $data['headline_img'] = '/storage/' . $path;
         }
@@ -90,6 +98,13 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::findOrFail($id);
+
+        // Hapus file gambar kalau ada
+        if ($blog->headline_img) {
+            $oldPath = str_replace('/storage/', '', $blog->headline_img);
+            Storage::disk('public')->delete($oldPath);
+        }
+
         $blog->delete();
 
         return response()->json(['message' => 'Blog deleted successfully']);
