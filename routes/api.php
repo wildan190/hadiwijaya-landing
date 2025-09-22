@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\Admin\FaqController;
 use App\Http\Controllers\Api\v1\Admin\HeroController;
 use App\Http\Controllers\Api\v1\Admin\VisitorController;
 use App\Http\Controllers\Api\v1\Auth\AuthController;
@@ -41,6 +42,12 @@ Route::prefix('v1/admin')
         Route::get('/heroes/{id}', [HeroController::class, 'show']);
         Route::put('/heroes/{id}', [HeroController::class, 'update']);
         Route::delete('/heroes/{id}', [HeroController::class, 'destroy']);
+
+        Route::get('/faqs', [FaqController::class, 'index']);
+        Route::post('/faqs', [FaqController::class, 'store']);
+        Route::get('/faqs/{id}', [FaqController::class, 'show']);
+        Route::put('/faqs/{id}', [FaqController::class, 'update']);
+        Route::delete('/faqs/{id}', [FaqController::class, 'destroy']);
     });
 
 Route::prefix('v2')
