@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\Hero;
 
 class HomeController extends Controller
@@ -11,6 +12,11 @@ class HomeController extends Controller
     public function heroes()
     {
         return response()->json(Hero::all(), 200);
+    }
+
+    public function faq()
+    {
+        return response()->json(Faq::all(), 200);
     }
 
     // Get single hero (public)
