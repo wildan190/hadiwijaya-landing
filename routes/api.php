@@ -38,9 +38,9 @@ Route::prefix('v1/admin')
         Route::get('/visitors/top-blogs', [VisitorController::class, 'topBlogs']);
 
         Route::get('/heroes', [HeroController::class, 'index']);
-        Route::post('/heroes', [HeroController::class, 'store']);
+        Route::post('/heroes', [HeroController::class, 'storeOrUpdate']);
+        Route::post('/heroes/{id}', [HeroController::class, 'storeOrUpdate']);
         Route::get('/heroes/{id}', [HeroController::class, 'show']);
-        Route::put('/heroes/{id}', [HeroController::class, 'update']);
         Route::delete('/heroes/{id}', [HeroController::class, 'destroy']);
 
         Route::get('/faqs', [FaqController::class, 'index']);

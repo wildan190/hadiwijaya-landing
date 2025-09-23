@@ -14,17 +14,20 @@ class HeroController extends Controller
         return response()->json(Hero::all(), 200);
     }
 
-    // Store new hero
-    public function store(Request $request)
+    // Create or Update hero (upsert)
+    public function storeOrUpdate(Request $request, $id = null)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
         ]);
 
-        $hero = Hero::create($validated);
+        $hero = Hero::updateOrCreate(
+            ['id' => $id],
+            $validated
+        );
 
-        return response()->json($hero, 201);
+        return response()->json($hero, $id ? 200 : 201);
     }
 
     // Show single hero
@@ -35,25 +38,6 @@ class HeroController extends Controller
         if (!$hero) {
             return response()->json(['message' => 'Hero not found'], 404);
         }
-
-        return response()->json($hero, 200);
-    }
-
-    // Update hero
-    public function update(Request $request, $id)
-    {
-        $hero = Hero::find($id);
-
-        if (!$hero) {
-            return response()->json(['message' => 'Hero not found'], 404);
-        }
-
-        $validated = $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-        ]);
-
-        $hero->update($validated);
 
         return response()->json($hero, 200);
     }
