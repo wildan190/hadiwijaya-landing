@@ -14,7 +14,7 @@ class HomeController extends Controller
         return response()->json(Hero::all(), 200);
     }
 
-    public function faq()
+    public function faqs()
     {
         return response()->json(Faq::all(), 200);
     }

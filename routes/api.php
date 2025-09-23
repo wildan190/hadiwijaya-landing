@@ -56,6 +56,6 @@ Route::prefix('v2')
         Route::get('/blogs', [BlogPublicController::class, 'index']);
         Route::get('/blogs/{slug}', [BlogPublicController::class, 'show']);
         Route::get('/heroes', [App\Http\Controllers\Api\v2\HomeController::class, 'heroes']);
-        Route::get('/heroes/{id}', [App\Http\Controllers\Api\v2\HomeController::class, 'hero']
-        );
+        Route::get('/heroes/{id}', [App\Http\Controllers\Api\v2\HomeController::class, 'hero']);
+        Route::get('/faqs', [App\Http\Controllers\Api\v2\HomeController::class, 'faqs']);
     });
