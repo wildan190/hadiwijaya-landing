@@ -19,6 +19,11 @@ class HomeController extends Controller
         return response()->json(Faq::all(), 200);
     }
 
+    public function projects()
+    {
+        return response()->json(\App\Models\Project::all(), 200);
+    }
+
     // Get single hero (public)
     public function hero($id)
     {

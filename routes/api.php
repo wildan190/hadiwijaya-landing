@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\Admin\FaqController;
 use App\Http\Controllers\Api\v1\Admin\HeroController;
+use App\Http\Controllers\Api\v1\Admin\ProjectController;
 use App\Http\Controllers\Api\v1\Admin\VisitorController;
 use App\Http\Controllers\Api\v1\Auth\AuthController;
 use App\Http\Controllers\Api\v1\BlogController;
@@ -48,6 +49,12 @@ Route::prefix('v1/admin')
         Route::get('/faqs/{id}', [FaqController::class, 'show']);
         Route::put('/faqs/{id}', [FaqController::class, 'update']);
         Route::delete('/faqs/{id}', [FaqController::class, 'destroy']);
+
+        Route::get('/projects', [ProjectController::class, 'index']);
+        Route::post('/projects', [ProjectController::class, 'store']);
+        Route::get('/projects/{id}', [ProjectController::class, 'show']);
+        Route::put('/projects/{id}', [ProjectController::class, 'update']);
+        Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
     });
 
 Route::prefix('v2')
@@ -58,4 +65,5 @@ Route::prefix('v2')
         Route::get('/heroes', [App\Http\Controllers\Api\v2\HomeController::class, 'heroes']);
         Route::get('/heroes/{id}', [App\Http\Controllers\Api\v2\HomeController::class, 'hero']);
         Route::get('/faqs', [App\Http\Controllers\Api\v2\HomeController::class, 'faqs']);
+        Route::get('/projects', [App\Http\Controllers\Api\v2\HomeController::class, 'projects']);
     });
