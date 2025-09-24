@@ -61,6 +61,13 @@ Route::prefix('v1/admin')
         Route::get('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'show']);
         Route::put('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'update']);
         Route::delete('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'destroy']);
+
+        // route for layanan without apiresource
+        Route::get('/layanans', [App\Http\Controllers\Api\v1\Admin\LayananController::class, 'index']);
+        Route::post('/layanans', [App\Http\Controllers\Api\v1\Admin\LayananController::class, 'store']);
+        Route::get('/layanans/{id}', [App\Http\Controllers\Api\v1\Admin\LayananController::class, 'show']);
+        Route::put('/layanans/{id}', [App\Http\Controllers\Api\v1\Admin\LayananController::class, 'update']);
+        Route::delete('/layanans/{id}', [App\Http\Controllers\Api\v1\Admin\LayananController::class, 'destroy']);
     });
 
 Route::prefix('v2')
