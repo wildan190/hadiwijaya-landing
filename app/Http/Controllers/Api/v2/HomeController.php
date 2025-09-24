@@ -24,6 +24,11 @@ class HomeController extends Controller
         return response()->json(\App\Models\Project::all(), 200);
     }
 
+    public function pricintTable()
+    {
+        return response()->json(\App\Models\PricingTable::all(), 200);
+    }
+
     // Get single hero (public)
     public function hero($id)
     {

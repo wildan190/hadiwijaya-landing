@@ -55,6 +55,12 @@ Route::prefix('v1/admin')
         Route::get('/projects/{id}', [ProjectController::class, 'show']);
         Route::put('/projects/{id}', [ProjectController::class, 'update']);
         Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
+
+        Route::get('/pricing-tables', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'index']);
+        Route::post('/pricing-tables', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'store']);
+        Route::get('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'show']);
+        Route::put('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'update']);
+        Route::delete('/pricing-tables/{id}', [App\Http\Controllers\Api\v1\Admin\PricingTableController::class, 'destroy']);
     });
 
 Route::prefix('v2')
@@ -66,4 +72,5 @@ Route::prefix('v2')
         Route::get('/heroes/{id}', [App\Http\Controllers\Api\v2\HomeController::class, 'hero']);
         Route::get('/faqs', [App\Http\Controllers\Api\v2\HomeController::class, 'faqs']);
         Route::get('/projects', [App\Http\Controllers\Api\v2\HomeController::class, 'projects']);
+        Route::get('/pricing-tables', [App\Http\Controllers\Api\v2\HomeController::class, 'pricintTable']);
     });
