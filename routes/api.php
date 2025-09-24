@@ -72,5 +72,5 @@ Route::prefix('v2')
         Route::get('/heroes/{id}', [App\Http\Controllers\Api\v2\HomeController::class, 'hero']);
         Route::get('/faqs', [App\Http\Controllers\Api\v2\HomeController::class, 'faqs']);
         Route::get('/projects', [App\Http\Controllers\Api\v2\HomeController::class, 'projects']);
-        Route::get('/pricing-tables', [App\Http\Controllers\Api\v2\HomeController::class, 'pricintTable']);
+        Route::get('/pricing-tables', [App\Http\Controllers\Api\v2\HomeController::class, 'pricingTable']);
     });

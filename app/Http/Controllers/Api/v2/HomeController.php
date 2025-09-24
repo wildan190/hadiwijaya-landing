@@ -24,7 +24,7 @@ class HomeController extends Controller
         return response()->json(\App\Models\Project::all(), 200);
     }
 
-    public function pricintTable()
+    public function pricingTable()
     {
         return response()->json(\App\Models\PricingTable::all(), 200);
     }
